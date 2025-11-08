@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Machine Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- XLSX library for Excel export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header class="navbar">
+    <h1>PREVENTIVE MAINTENANCE MACHINE TRACKER </h1>
+  </header>
+
+  <main class="container">
+    <!-- Add Location -->
+    <section class="form-section">
+      <h2>Add Location</h2>
+      <div class="form-group">
+        <input type="text" id="locationInput" placeholder="Enter Location Name" />
+        <button class="btn green" onclick="addLocation()">Add Location</button>
+      </div>
+    </section>
+
+    <!-- Add Machine -->
+    <section class="form-section">
+      <h2>Add Machine</h2>
+      <div class="form-group">
+        <select id="locationSelect"></select>
+        <input type="text" id="machineName" placeholder="Enter Machine Name" />
+        <input type="date" id="machineInstall" />
+        <input type="date" id="machineService" />
+        <button class="btn blue" onclick="addMachine()">Add Machine</button>
+      </div>
+    </section>
+
+    <!-- Add Equipment -->
+    <section class="form-section">
+      <h2>Add Equipment</h2>
+      <div class="form-group">
+        <select id="locationForEquip"></select>
+        <select id="machineSelect"></select>
+        <input type="text" id="equipName" placeholder="Enter Equipment Name" />
+        <input type="date" id="equipInstall" />
+        <input type="date" id="equipService" />
+        <button class="btn purple" onclick="addEquipment()">Add Equipment</button>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="form-section">
+      <h2>Filters</h2>
+      <div class="form-group">
+        <select id="filterLocation" onchange="displayData()">
+          <option value="">All Locations</option>
+        </select>
+        <input type="text" id="filterMachine" placeholder="Filter Machine" oninput="displayData()" />
+        <input type="text" id="filterEquipment" placeholder="Filter Equipment" oninput="displayData()" />
+        <select id="filterStatus" onchange="displayData()">
+          <option value="">All Status</option>
+          <option value="near-service">Near Service</option>
+          <option value="overdue">Overdue</option>
+        </select>
+        <button class="btn red" onclick="clearFilters()">Clear Filters</button>
+      </div>
+    </section>
+
+    <!-- All Data Section -->
+    <section class="data-section">
+      <div class="header-row">
+        <h2>All Data</h2>
+        <button class="btn export" onclick="exportToExcel()">Export Excel</button>
+      </div>
+      <div id="dataDisplay" class="data-display"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
